@@ -1,3 +1,4 @@
+
  The application was implemented with [.NET Core 3.1 SDK](https://github.com/dotnet/core/tree/master/release-notes/3.1) and [.NET Standard 2.0](https://docs.microsoft.com/en-us/dotnet/standard/net-standard).
 
 ## How to run locally? ##
@@ -34,7 +35,7 @@ Based on the above decision, the [API abstraction layer](https://github.com/sadd
 The API was documented with the **Open API (Swagger)** support.
 
 ### [Console Scraper](https://github.com/saddambilalov/Rtl.Assignment/tree/master/src/Console/Rtl.Assignment.Scraper)
-When calling the external API the issues were handled with Polly [Advanced](https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker) (to have a circuit breaker) and [Jitter](https://github.com/App-vNext/Polly/wiki/Retry-with-jitter) (to avoid retries bunching into further spikes of load) retry policies. To make external integration easier and clearer, Rifl was used.
+When calling the external API the issues were handled with Polly [Advanced](https://github.com/App-vNext/Polly/wiki/Advanced-Circuit-Breaker) (to have a circuit breaker) and [Jitter](https://github.com/App-vNext/Polly/wiki/Retry-with-jitter) (to avoid retries bunching into further spikes of load) retry policies. To make external integration easier and clearer, [**Refit**](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/http-requests?view=aspnetcore-3.1) was used.
 
 When the console application starts, shows are fetched from the defined page to the defined page. It's part of the [configuration](https://github.com/saddambilalov/Rtl.Assignment/blob/7777b5e2d03059ddb6c1ca3d3dfd7c095447e19d/src/Console/Rtl.Assignment.Scraper/appsettings.json#L15) and was also passed as an environment variable when [docker-compose](https://github.com/saddambilalov/Rtl.Assignment/blob/7777b5e2d03059ddb6c1ca3d3dfd7c095447e19d/docker-compose.yml#L11) runs for demo purposes.
 
