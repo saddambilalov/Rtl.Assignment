@@ -1,0 +1,9 @@
+version: '3.1'
+
+services:
+  movie.datastore:
+      container_name: movie.datastore
+      image: mongo:4.2
+      ports:
+        - 27018:27017
+      restart: always

@@ -1,0 +1,46 @@
+version: "3.1"
+services:
+
+   data.scraper:
+      container_name: data.scraper
+      build:
+         context: .
+         dockerfile: src/Console/Rtl.Assignment.Scraper/Dockerfile
+      environment:
+         - RtlDatabaseSettings__ConnectionString=mongodb://movie.datastore
+         - DataWriterSettings__FetchFrom=0
+         - DataWriterSettings__FetchTo=1
+      depends_on:
+         - movie.datastore
+      networks:
+         - rtl-network
+
+   rest.api:
+      container_name: rest.api
+      build:
+         context: .
+         dockerfile: src/Api/Rtl.Assignment.Api/Dockerfile
+      environment:
+         - RtlDatabaseSettings__ConnectionString=mongodb://movie.datastore
+      ports:
+         - 3015:80
+      depends_on:
+         - movie.datastore
+      networks:
+         - rtl-network
+
+   movie.datastore:
+      container_name: movie.datastore
+      image: mongo:4.2
+      volumes:
+      - movie_data:/data/db
+      restart: always
+      networks:
+         - rtl-network
+
+volumes:
+  movie_data:
+
+networks:
+   rtl-network:
+      driver: bridge

@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "Rtl.Assignment.Scraper": {
+      "commandName": "Project"
+    },
+    "Docker": {
+      "commandName": "Docker"
+    }
+  }
+}
