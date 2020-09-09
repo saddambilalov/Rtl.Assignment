@@ -46,7 +46,7 @@ It resesents the concerpt of business and follows the [Persistence Ignorance](ht
 ### [The infrastructure layer](https://github.com/saddambilalov/Rtl.Assignment/tree/master/src/Rtl.Assignment.Infrastructure)
 This layer contains the implementation of data persistence and repository.
 
-**Note. There are some important cases left in order to be discussed in the interview:**
+## Note. There are some important cases left in order to be discussed in the interview: ##
 1 .Instead of feeding data from the external API, it can be better to have the publish/subscriber pattern. When something has changed on the show and cast side they can publish an event that will be executed by a subscription in the reading model. It can also be the same as the [CQRS](https://learning.oreilly.com/library/view/designing-event-driven-systems/9781492038252/ch07.html) implementation.
 2. The application was not covered with the unit tests as a whole due to the time limitation.
 3. And so on...
