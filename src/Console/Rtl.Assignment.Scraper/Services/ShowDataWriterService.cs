@@ -44,8 +44,9 @@
         {
             this.logger.LogInformation($"Fetching data from {this.writerSettings.FetchFrom} to {this.writerSettings.FetchTo}");
 
-            var page = this.writerSettings.FetchFrom;
-            while (!cancellationToken.IsCancellationRequested)
+            var page = this.writerSettings.FetchFrom - 1;
+            while (!cancellationToken.IsCancellationRequested
+                   || ++page <= this.writerSettings.FetchTo)
             {
                 try
                 {
@@ -53,18 +54,11 @@
                         await this.mazeClientService
                             .FetchShowsAsync(page, cancellationToken);
 
-                    if (page == this.writerSettings.FetchTo)
-                    {
-                        break;
-                    }
-
                     await this.showWithCastRepository.UpdateShowBulkAsync(
                         this.mapper.Map<IEnumerable<ShowWithCastEntity>>(showDtos),
                         cancellationToken);
 
                     await this.NotifyShowUpdatesAsync(showDtos, cancellationToken);
-
-                    page++;
                 }
                 catch (ApiException e) when (e.StatusCode == HttpStatusCode.NotFound)
                 {
