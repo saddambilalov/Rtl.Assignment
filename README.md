@@ -23,7 +23,7 @@ docker-compose -f docker-compose.local.yml up --remove-orphans --force-recreate 
 ## Decisions on the development side ##
  
 1. The API provides data from the data store. The API serves as a read model.
-  2. The console application that feeds the data store from the external [Maze TV API](http://api.tvmaze.com).
+2. The console application that feeds the data store from the external [Maze TV API](http://api.tvmaze.com).
 
 The application was developed as a [modular monolith](https://learning.oreilly.com/library/view/monolith-to-microservices/9781492047834/). Due to the load and complexity of the system, it can easily be segregated in the near future if necessary to separate microservices.
 
@@ -48,6 +48,6 @@ It resesents the concerpt of business and follows the [Persistence Ignorance](ht
 This layer contains the implementation of data persistence and repository.
 
 ## Note. There are some important cases left in order to be discussed in the interview: ##
-1 .Instead of feeding data from the external API, it can be better to have the publish/subscriber pattern. When something has changed on the show and cast side they can publish an event that will be executed by a subscription in the reading model. It can also be the same as the [CQRS](https://learning.oreilly.com/library/view/designing-event-driven-systems/9781492038252/ch07.html) implementation.
+1. Instead of feeding data from the external API, it can be better to have the publish/subscriber pattern. When something has changed on the show and cast side they can publish an event that will be executed by a subscription in the reading model. It can also be the same as the [CQRS](https://learning.oreilly.com/library/view/designing-event-driven-systems/9781492038252/ch07.html) implementation.
 2. The application was not covered with the unit tests as a whole due to the time limitation.
 3. And so on...
